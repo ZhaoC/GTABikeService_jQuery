@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+
+<body>
+    <!-- Start of first page: #home -->
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <h1 class="ui-title">GTA Bikes Share</h1>
+        </div>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#REPORT" class="ui-btn ui-icon-eye ui-btn-icon-bottom">Report</a></li>
+                <li><a href="#LOCATION" class="ui-btn ui-icon-location ui-btn-icon-bottom">Location</a></li>
+                <li><a href="#MAP" class="ui-btn ui-icon-navigation ui-btn-icon-bottom" id="myMap">Map</a></li>
+            </ul>
+        </div>
+        <div class="ui-content" role="main" id="homeContent">
+
+            <!--Pie chart spot-->
+            <div id="piechart">
+                <div class="progressDiv">
+                    <div class="statChartHolder">
+                        <div class="progress-pie-chart">
+                            <!--Pie Chart -->
+                            <div class="ppc-progress">
+                                <div class="ppc-progress-fill"></div>
+                            </div>
+                            <div class="ppc-percents">
+                                <div class="pcc-percents-wrapper">
+                                    <span>%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Chart -->
+                    </div>
+                    <div class="statRightHolder">
+                        <ul>
+                            <li>
+                                <h3 class="blue" id="chartTotalBike"></h3> <span>Bikes in Total</span></li>
+                            <li>
+                                <h3 class="purple" id="chartAvaBike"></h3> <span>Bikes Available</span></li>
+                        </ul>
+                        <ul class="statsLeft">
+                            <li>
+                                <h3 class="yellow" id="chartAvaBikePercent"> </h3> <span>Avaliable Bikes</span></li>
+                        </ul>
+                        <ul class="statsRight">
+                            <li>
+                                <h3 id="chartAvaDockPercent"></h3> <span>Avaliable Docks</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--End of pie Chart-->
+            <div id="piechart">
+                <div class="progressDiv">
+                    <div>
+                        <img src="images/bike.jpg" alt="Bike" style="float:left; width:300px; height:255px;">
+                        <h1>GTA Bike Share</h1>
+                        <p class="sansserif">GTA Bike Share is available for use 24 hours a day, 365 days a year, except during inclement weather
+                            conditions that might make the system unsafe for our customers and our field services team. The
+                            station network provides twice as many docking points as bicycles, assuring that an available
+                            dock to return your bicycle is always nearby. The system includes a fleet of specially designed,
+                            heavy-duty, durable bicycles that are locked into a network of docking stations.</br>
+                            </br>GTA Bike Share is a project of the Parking Authority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer">
+            <center>
+                <div>
+                    <a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-star ui-btn-icon-left ui-btn-b"
+                        data-transition="flip">Click Me</a>
+                    <div data-role="popup" id="popupBasic">
+                        <p>:) :) :) :)</p>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </div>
+
+
+    <!-- Start of second page: #REPORT -->
+    <div data-role="page" id="REPORT" data-theme="a">
+        <header data-role="header">
+            <a href="#home" class="ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all">Home</a>
+            <h1>GTA Bikes Share Report</h1>
+        </header>
+        <!-- /header -->
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
+                <li><a href="#LOCATION" class="ui-btn ui-icon-location ui-btn-icon-top">Location</a></li>
+                <li><a href="#MAP" class="ui-btn ui-icon-navigation ui-btn-icon-top">Map</a></li>
+            </ul>
+        </div>
+
+        <div class="ui-content" data-role="main">
+            <!--- PUT REPORT STUFF HERE-->
+            <h3 id="currenAvailabilityRate"></h3>
+            <form class="ui-filterable" onsubmit="return false">
+                <input id="myFilter" data-type="search">
+            </form>
+            <table data-role="table" data-mode="columntoggle" class="ui-responsive" id="myTable" data-filter="true" data-input="#myFilter"
+                data-autodividers="true" data-inset="true" data-column-btn-text="Choose Display Columns">
+                <thead>
+                    <tr>
+                        <th data-priority="1">ID</th>
+                        <th>StationName</th>
+                        <th data-priority="2">AvailableDocks</th>
+                        <th data-priority="3">AvailableBikes</th>
+                        <th data-priority="4">StatusValue</th>
+                        <th data-priority="8">StatusKey</th>
+                        <th data-priority="6">LandMark</th>
+                        <th data-priority="5">LastCommunicationTime</th>
+                        <th data-priority="7">Lat/Long</th>
+                    </tr>
+                </thead>
+                <tbody id="reportContent">
+                </tbody>
+            </table>
+        </div>
+        <div data-role="footer">
+            <center>
+                <p class="serif" id="reportTime">
+                    <p>
+            </center>
+        </div>
+    </div>
+
+    <!-- Start of third page: #LOCATION-->
+    <div data-role="page" id="LOCATION" data-theme="a">
+        <header data-role="header">
+            <a href="#home" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all">Home</a>
+            <h1>GTA Bikes Share Location</h1>
+        </header>
+        <!-- /header -->
+        <nav data-role="navbar">
+            <ul>
+                <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
+                <li><a href="#REPORT" class="ui-btn ui-icon-eye ui-btn-icon-top"><span class="m1"></span>Report</a></li>
+                <li><a href="#MAP" class="ui-btn ui-icon-navigation ui-btn-icon-top"><span class="m3"></span>Map</a></li>
+            </ul>
+        </nav>
+        <!--PUT LOCATION STUFF HERE-->
+        <div data-role="content">
+            <div data-iscroll>
+                <ul data-role="listview" id="bike-list">
+                    <!--Placeholder for listview-->
+                </ul>
+            </div>
+        </div>
+
+        <footer data-role="footer">
+            <center>
+                <p class="serif" id="locationFooter">
+                    <p>
+            </center>
+        </footer>
+    </div>
+
+    <!-- Use a signle page to dispaly info for all bikes info-->
+    <div data-role="page" id="bikePage">
+        <div data-role="header">
+            <!--Add back botton at the left corner-->
+            <a href="#LOCATION" data-add-back-btn="true">Back</a>
+            <h3>GTA Bikes Share Location >> Bike Station Info</h3>
+        </div>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
+                <li><a href="#LOCATION" class="ui-btn ui-icon-location ui-btn-icon-top">Location</a></li>
+                <li><a href="#MAP" class="ui-btn ui-icon-navigation ui-btn-icon-top">Map</a></li>
+            </ul>
+        </div>
+        <div data-role="content" id="bikeInfo">
+            <!-- Insert the bike data here-->
+        </div>
+        <div data-role="footer">
+            <center>
+                <p class="serif" id="bikeInfoTime">kk
+                    <p>
+            </center>
+        </div>
+    </div>
+
+    <!-- Start of fourth page: #MAP -->
+    <div data-role="page" id="MAP" onload="initialize()">
+        <header data-role="header">
+            <a href="#home" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all">Home</a>
+            <h1>GTA Bikes Share Map</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
+                    <li><a href="#REPORT" class="ui-btn ui-icon-eye ui-btn-icon-top"><span class="m1"></span>Report</a></li>
+                    <li><a href="#LOCATION" class="ui-btn ui-icon-location ui-btn-icon-top"><span class="m2"></span>Location</a></li>
+                </ul>
+            </div>
+        </header>
+        <!-- /header -->
+
+        <div id="content" class="ui-content" data-role="main">
+            <!---PUT MAP STUFF HERE-->
+            <div id="mapArea" style="width:100%; height:90%">map</div>
+            <button class="ui-btn ui-btn-inline ui-icon-user ui-btn-icon-right ui-overlay-shadow" id="locButton">Get Nearest Location</button>
+            <footer data-role="footer">
+                <center>
+                    <p class="serif" id="mapTime">
+                        <p>
+                </center>
+            </footer>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="_css/jquery.mobile.css" />
+    <link rel="stylesheet" href="_css/pieChart.css" />
+    <script src="_js/jquery.js"></script>
+    <script src="_js/jquery.mobile.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key="Put Your Key Here"&sensor=false">
+    </script>
+    <script src="_js/workScript.js"></script>
+    <link rel="stylesheet" href="_css/myStyle.css" />
+</body>
+
+</html>
